@@ -4,6 +4,12 @@ import { StaticQuery, Link, graphql } from "gatsby"
 
 import { rhythm } from "../utils/typography"
 
+const bigLandscapeWidth = `60vw`;
+const smallLandscapeWidth = `40vw`;
+const portraity = `(max-aspect-ratio: 3/2)`;
+const bigPortraitWidth = `95vw`;
+const smallPortraitWidth = `80vw`;
+
 export default ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -19,7 +25,11 @@ export default ({ children }) => (
       <div
         css={css`
           margin: 0 auto;
-          max-width: 700px;
+          max-width: ${bigLandscapeWidth};
+          @media ${portraity} {
+            max-width: ${bigPortraitWidth};
+          }
+
           padding: ${rhythm(2)};
           padding-top: ${rhythm(1.5)};
         `}
@@ -32,23 +42,48 @@ export default ({ children }) => (
             margin-bottom: ${rhythm(2)};
           `}
         >
-          <Link to={`/`} >
+          <Link
+            to={`/`}
+            css={css`
+              padding: ${rhythm(.5)};
+            `}
+          >
             <h3>
               {data.site.siteMetadata.title}
             </h3>
           </Link>
 
-          <Link to={`/about/`} >
+          <Link
+            to={`/about/`}
+            css={css`
+              padding: ${rhythm(.5)};
+            `}
+          >
             About
           </Link>
 
-          <Link to={`/files/`} >
+          <Link
+            to={`/files/`}
+            css={css`
+              padding: ${rhythm(.5)};
+            `}
+          >
             Files
           </Link>
 
         </div>
 
-        {children}
+        <div
+          css={css`
+            margin: 0 auto;
+            width: ${smallLandscapeWidth};
+            @media ${portraity} {
+              width: ${smallPortraitWidth};
+            }
+          `}
+        >
+          {children}
+        </div>
 
       </div>
     )}
