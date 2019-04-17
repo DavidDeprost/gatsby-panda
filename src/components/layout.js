@@ -24,26 +24,32 @@ export default ({ children }) => (
           padding-top: ${rhythm(1.5)};
         `}
       >
-        <Link to={`/`}>
-          <h3
-            css={css`
-              margin-bottom: ${rhythm(2)};
-              display: inline-block;
-              font-style: normal;
-            `}
-          >
-            {data.site.siteMetadata.title}
-          </h3>
-        </Link>
-        <Link
-          to={`/about/`}
+        <div
           css={css`
-            float: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: ${rhythm(2)};
           `}
         >
-          About
-        </Link>
+          <Link to={`/`} >
+            <h3>
+              {data.site.siteMetadata.title}
+            </h3>
+          </Link>
+
+          <Link to={`/about/`} >
+            About
+          </Link>
+
+          <Link to={`/files/`} >
+            Files
+          </Link>
+
+        </div>
+
         {children}
+
       </div>
     )}
   />
